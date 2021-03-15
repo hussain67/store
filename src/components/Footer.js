@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 const Footer = () => {
   return <Wrapper>
-    <h5>  &copy; {new Date().getFullYear()} <span>ComfySloth </span></h5> <h5>    All right reserved</h5>
+    <h5>  &copy; {new Date().getFullYear()} <span>ComfySloth </span> </h5>  <h5>All right reserved</h5>
   </Wrapper>
 }
 
-const Wrapper = styled.footer`
+const Wrapper = styled.div`
+box-sizing:border-box;
 height:5rem;
 display:flex;
 flex-direction:column;
@@ -16,9 +17,8 @@ align-items:center;
 letter-spacing: 1px;
 
 color:#fff;
-position:fixed;
-bottom:0;
-width:100vw;
+
+
 span{
   color: var(--clr-primary-5);
   margin:0 5px;
