@@ -6,8 +6,6 @@ const HomePage = () => {
     <FeaturedProducts />
     <Services />
     <Contact />
-
-
   </main>
 }
 

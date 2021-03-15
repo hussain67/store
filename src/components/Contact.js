@@ -2,10 +2,77 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Contact = () => {
-  return <Wrapper>
-    Contact Section
+  return <Wrapper className="section section-center">
+    <article className="contact">
+      <div className="contact-text">
+        <h3>Join our newsletter and get 20% off</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit error vitae nihil porro maxime ullam quisquam tenetur delectus tempore accusantium!</p>
+      </div>
+      <div className="contact-email">
+        <form action="https://formspree.io/f/xjvpnjlq"
+          method="POST">
+
+          <input type="email" placeholder='Enter Email' name="_replyto" />
+          <button>Subscribe</button>
+        </form>
+      </div>
+    </article>
+
   </Wrapper>
 }
+
+const Wrapper = styled.section`
+.contact{
+  display:flex;
+  flex-direction:column;
+  form{
+    display:flex;
+    height:38px;
+    width:95%;
+    input{
+          flex:3;
+          border: 2px solid black;
+          padding-left:20px;
+          border-top-left-radius:5px;
+          border-bottom-left-radius:5px;
+    }
+    button{
+      flex:1;
+      border: 2px solid black;
+      border-left:none;
+      border-top-right-radius:5px;
+      border-bottom-right-radius:5px;
+      cursor:pointer;
+      letter-spacing:2px;
+      background-color:var(--clr-primary-5)
+    }
+    button:hover{
+      color:#fff;
+      background-color:var(--clr-primary-3)
+    }
+  }
+
+  @media (min-width:992px){
+    flex-direction:row;
+    gap:3rem;
+    margin-top:10rem;
+    .contact-text{
+      flex:1;
+    }
+    .contact-email{
+      flex:1;
+      align-self:center;
+     
+    }
+  }
+  
+}
+
+`
+//FORMSPREE
+//https://formspree.io/f/xjvpnjlq
+
+/*
 const Wrapper = styled.section`
 margin-top:5rem;
   padding: 5rem 0;
@@ -71,5 +138,5 @@ margin-top:5rem;
     padding: 15rem 0;
   }
 `
-
+*/
 export default Contact
