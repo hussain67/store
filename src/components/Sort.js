@@ -3,9 +3,25 @@ import { useFilterContext } from '../context/filter_context'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
 const Sort = () => {
-  return <h4>sort </h4>
+  return <Wrapper>
+    <div className="btn-container">
+      <button type='button' ><BsFillGridFill /></button>
+
+      <button type='button'> <BsList /></button>
+
+    </div>
+
+  </Wrapper>
 }
 
+const Wrapper = styled.section`
+.btn-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+`
+/*
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: auto auto 1fr auto;
@@ -67,6 +83,6 @@ const Wrapper = styled.section`
     font-size: 1rem;
     text-transform: capitalize;
   }
-`
+`*/
 
 export default Sort

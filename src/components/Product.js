@@ -4,10 +4,73 @@ import { formatPrice } from '../utils/helpers'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const Product = () => {
-  return <h4>product</h4>
+const Product = ({ id, image, name, price }) => {
+  return <Wrapper key={id}>
+    <div className="container">
+      <img src={image} alt={name} />
+      <Link to={`/products/${id}`} className="link"><FaSearch /></Link>
+    </div>
+    <footer>
+      <p className="name">{name}</p>
+      <p className="price">{formatPrice(price)}</p>
+    </footer>
+  </Wrapper>
 }
 
+const Wrapper = styled.article`
+.container{
+  position:relative;
+  background:black;
+  img{
+    display:block;
+    width:100%;
+    margin-bottom:1rem;
+    height:225px;
+    cursor:pointer;
+   
+    transition:opacity .5s linear;
+  }
+.link{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  left:50%;
+  background:var(  --clr-primary-5);
+  height:50px;
+  width:50px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+ opacity:0;
+ transition:opacity .5s linear;
+  svg{
+    color:#fff;
+    font-size:1.4rem;
+  }
+  }
+}
+.container:hover img{
+  opacity:.7;
+}
+.container:hover .link{
+  opacity:1;
+}
+
+footer{
+  display:flex;
+  justify-content:space-between;
+  .name{
+    text-transform:capitalize;
+    letter-spacing:2px;
+  }
+  .price{
+    color:var(--clr-primary-3)
+  }
+}
+
+`
+
+/*
 const Wrapper = styled.article`
   .container {
     position: relative;
@@ -63,5 +126,5 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
     letter-spacing: var(--spacing);
   }
-`
+`*/
 export default Product

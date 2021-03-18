@@ -2,10 +2,53 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
-const ListView = () => {
-  return <h4>list view</h4>
-}
+const ListView = ({ products }) => {
+  console.log(products)
 
+  return <Wrapper>
+
+    {products.map(product => {
+      const { id, name, price, description, image } = product
+
+      return <article key={id}>
+        <img src={image} alt="Product Image" />
+        <div>
+          <h4>{name}</h4>
+          <p className="price">{formatPrice(price)}</p>
+          <p>{description.substring(0, 150)}. . .</p>
+          <Link className="btn" to={`/products/${id}`}>Details</Link>
+        </div>
+      </article>
+    })}
+  </Wrapper>
+}
+const Wrapper = styled.section`
+display:grid;
+  gap:3rem;
+img{
+  width:300px;
+  height:200px;
+  display:block;
+  object-fit:cover;
+  border-radius:5px;
+  margin-bottom:1rem;
+}
+.price{
+  color:var(--clr-primary-6);
+  margin-bottom:.75rem;
+}
+@media (min-width:992px){
+  
+  article{
+    display:grid;
+    column-gap:3rem;
+    align-items:center;
+    grid-template-columns: auto 1fr;
+  }
+ 
+}
+`
+/*
 const Wrapper = styled.section`
   display: grid;
   row-gap: 3rem;
@@ -43,5 +86,5 @@ const Wrapper = styled.section`
     }
   }
 `
-
+*/
 export default ListView
