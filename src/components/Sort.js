@@ -3,25 +3,30 @@ import { useFilterContext } from '../context/filter_context'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
 const Sort = () => {
+  const { filtered_products: products, grid_view, productsView, sort, updateSort } = useFilterContext()
   return <Wrapper>
+
     <div className="btn-container">
-      <button type='button' ><BsFillGridFill /></button>
+      <button type='button' onClick={() => productsView(true)} className={`${grid_view ? 'active' : null}`}><BsFillGridFill /></button>
 
-      <button type='button'> <BsList /></button>
-
+      <button type='button' onClick={() => productsView(false)} className={`${!grid_view ? 'active' : null}`}> <BsList /></button>
     </div>
+    <p>{products.length} Products Found</p>
+    <hr />
+    <form action="">
+      <label htmlFor="sort">Sort by</label>
+      <select name="sort" id="sort" value={sort} onChange={updateSort} className="sort-input">
+        <option value="price-lowest">price(lowest)</option>
+        <option value="price-highest">price(highest)</option>
+        <option value="name-a">name(A-Z)</option>
+        <option value="name-z">name(Z-A)</option>
+
+      </select>
+
+    </form>
 
   </Wrapper>
 }
-
-const Wrapper = styled.section`
-.btn-container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-}
-
-`
-/*
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: auto auto 1fr auto;
@@ -68,7 +73,7 @@ const Wrapper = styled.section`
       }
     }
     .active {
-      background: var(--clr-black);
+      background: green;
       color: var(--clr-white);
     }
   }
@@ -83,6 +88,6 @@ const Wrapper = styled.section`
     font-size: 1rem;
     text-transform: capitalize;
   }
-`*/
+`
 
 export default Sort

@@ -11,24 +11,66 @@ import {
   CLEAR_FILTERS,
 } from '../actions'
 import { useProductsContext } from './products_context'
-
-const initialState = {
-  filtered_products: [],
-  all_products: [],
-  grid_view: true
-}
-
 const FilterContext = React.createContext()
 
 export const FilterProvider = ({ children }) => {
+
+  const initialState = {
+    filtered_products: [],
+    all_products: [],
+    grid_view: true,
+    sort: 'price-lowest',
+
+    filters: {
+      text: '',
+      company: 'all',
+      category: 'all',
+      color: 'all',
+      min_price: 0,
+      max_price: 0,
+      price: 0,
+      shipping: false,
+    },
+  }
+  const { products } = useProductsContext()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const { products } = useProductsContext()
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, value: products })
   }, [products])
+
+  useEffect(() => {
+    dispatch({ type: FILTER_PRODUCTS, value: state.filters })
+    dispatch({ type: SORT_PRODUCTS, value: state.sort })
+  }, [products, state.sort, state.filters])
+
+  const updateSort = (e) => {
+    const value = e.target.value
+    dispatch({ type: UPDATE_SORT, value })
+    console.log(value)
+  }
+
+  const updateFilters = (e) => {
+    const name = e.target.name
+    let value = e.target.value
+    if (name === 'category') {
+      value = e.target.textContent
+    }
+    if (name === 'color') {
+      value = e.target.dataset.color
+    }
+    dispatch({ type: UPDATE_FILTERS, value: { name, value } })
+  }
+  const clearFilters = () => {
+
+  }
+
+  const productsView = (value) => {
+    dispatch({ type: SET_GRIDVIEW, value })
+  }
+
   return (
-    <FilterContext.Provider value={{ ...state }}>
+    <FilterContext.Provider value={{ ...state, productsView, updateSort, updateFilters, clearFilters }}>
       {children}
     </FilterContext.Provider>
   )
