@@ -21,7 +21,7 @@ const Filters = () => {
   const categories = getUniqueValues(all_products, 'category')
   const companies = getUniqueValues(all_products, 'company')
   const colors = getUniqueValues(all_products, 'colors')
-  console.log(colors)
+  //console.log(colors)
 
   return <Wrapper>
     <div className="content">
@@ -92,7 +92,19 @@ const Filters = () => {
             })}
           </div>
         </div>
+        <div className="form-control">
+          <h5>price</h5>
+          <p>{formatPrice(price)}</p>
+          <input type="range" name='price' onChange={updateFilters} min={min_price} max={max_price} value={price} />
+        </div>
+        <div className="form-control shipping">
+          <label htmlFor="shipping">free shipping</label>
+          <input type="checkbox" name='shipping' id='shipping' onChange={updateFilters} checked={shipping} />
+        </div>
       </form>
+      <button className="clear-btn" onClick={clearFilters}>
+        {' '} clear filters
+      </button>
     </div>
 
   </Wrapper>

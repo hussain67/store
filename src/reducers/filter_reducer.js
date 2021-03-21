@@ -10,6 +10,9 @@ import {
 } from '../actions'
 
 const filter_reducer = (state, action) => {
+
+
+
   if (action.type === LOAD_PRODUCTS) {
     let maxPrice = action.value.map(p => {
       return p.price
@@ -64,8 +67,66 @@ const filter_reducer = (state, action) => {
     return { ...state, filters: { ...state.filters, [name]: value } }
   }
   if (action.type === FILTER_PRODUCTS) {
-    console.log('Filtering products')
-    return { ...state }
+    const { text, company,
+      category,
+      color,
+      min_price,
+      max_price,
+      price,
+      shipping } = state.filters
+
+    const { all_products } = state
+    let tempProducts = [...all_products]
+
+    //Text 
+    if (text) {
+      tempProducts = tempProducts.filter(product => {
+        return product.name.toLowerCase().startsWith(text)
+      })
+    }
+    //Category
+    if (category !== 'all') {
+      tempProducts = tempProducts.filter(product => {
+        return product.category === category;
+      })
+    }
+    //Company
+    if (company !== 'all') {
+      tempProducts = tempProducts.filter(product => {
+        return product.company === company;
+      })
+    }
+    //Colors
+    if (color !== 'all') {
+      tempProducts = tempProducts.filter(product => {
+        return product.colors.find(c => c === color
+        );
+      })
+    }
+    //Price
+    if (price) {
+      tempProducts = tempProducts.filter(product => product.price <= price)
+    }
+
+    //Shipping
+    if (shipping) {
+      tempProducts = tempProducts.filter(product => product.shipping === true)
+    }
+    return { ...state, filtered_products: tempProducts }
+
+  }
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state, filters: {
+        ...state.filters,
+        text: '',
+        company: 'all',
+        category: 'all',
+        color: 'all',
+        price: state.filters.max_price,
+        shipping: false,
+      }
+    }
   }
   throw new Error(`No Matching "${action.type}" - action type`)
 }
