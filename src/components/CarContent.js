@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom'
 import CartColumns from './CartColumns'
 import CartItem from './CartItem'
 import CartTotals from './CartTotals'
+import PageHero from './PageHero'
 
 const CartContent = () => {
-  return <h4>cart content </h4>
+  const { cart } = useCartContext()
+  return (<Wrapper>
+
+
+  </Wrapper>
+  )
 }
 const Wrapper = styled.section`
   .link-container {
