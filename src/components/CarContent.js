@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import CartColumns from './CartColumns'
 import CartItem from './CartItem'
 import CartTotals from './CartTotals'
-import PageHero from './PageHero'
+//import PageHero from './PageHero'
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext()

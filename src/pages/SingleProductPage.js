@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
 import { single_product_url as url } from '../utils/constants'
 import { formatPrice } from '../utils/helpers'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import {
   Loading,
   Error,
@@ -19,10 +19,11 @@ const SingleProductPage = () => {
   const { single_product_loading: loading, single_product_error: error, fetchSingleProduct, single_product: product } = useProductsContext()
   const { id } = useParams()
   const urlsp = `${url}${id}`
-  const { colors = ["#ffb900"] } = product;
+  //const { colors } = product;
 
   useEffect(() => {
     fetchSingleProduct(urlsp)
+    // eslint-disable-next-line
   }, [id])
 
   if (loading) {

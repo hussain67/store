@@ -5,10 +5,10 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
   console.log(images)
   const [main, setMain] = useState(images[0])
   return <Wrapper>
-    <img src={main.url} alt="main image" className="main" />
+    <img src={main.url} alt='main' className="main" />
     <div className="gallery">
       {images.map((image, index) => {
-        return <img key={index} src={image.url} alt="gallery image" onClick={() => setMain(images[index])} />
+        return <img key={index} src={image.url} alt="gallery" onClick={() => setMain(images[index])} />
       })}
     </div>
   </Wrapper>

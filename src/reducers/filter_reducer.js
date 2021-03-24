@@ -1,6 +1,6 @@
 import {
   LOAD_PRODUCTS,
-  SET_LISTVIEW,
+  // SET_LISTVIEW,
   SET_GRIDVIEW,
   UPDATE_SORT,
   SORT_PRODUCTS,
@@ -70,8 +70,8 @@ const filter_reducer = (state, action) => {
     const { text, company,
       category,
       color,
-      min_price,
-      max_price,
+      //min_price,
+      //max_price,
       price,
       shipping } = state.filters
 

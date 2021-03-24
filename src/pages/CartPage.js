@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useCartContext } from '../context/cart_context'
 import { Link } from 'react-router-dom'
 import { CartContent, PageHero } from '../components'
-import { GiH2O } from 'react-icons/gi'
+//import { GiH2O } from 'react-icons/gi'
 
 const CartPage = () => {
   const { cart } = useCartContext()

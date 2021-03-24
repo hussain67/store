@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
-import filter_reducer from '../reducers/filter_reducer'
+//import filter_reducer from '../reducers/filter_reducer'
 
 const Filters = () => {
 

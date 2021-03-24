@@ -12,7 +12,7 @@ import {
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
 } from '../actions'
-import { FaSmile } from 'react-icons/fa'
+//import { FaSmile } from 'react-icons/fa'
 
 const ProductsContext = React.createContext()
 

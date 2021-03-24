@@ -27,6 +27,7 @@ const FeaturedProducts = () => {
         })}
       </div>
     </article>
+    <Link to='/products' className="btn">all products</Link>
   </Wrapper>
 }
 const Wrapper = styled.section`
