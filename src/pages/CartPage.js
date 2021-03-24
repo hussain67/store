@@ -7,6 +7,7 @@ import { GiH2O } from 'react-icons/gi'
 
 const CartPage = () => {
   const { cart } = useCartContext()
+  console.log(cart)
   if (cart.length < 1) {
     return (
       <Wrapper className="page-100">

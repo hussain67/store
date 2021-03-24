@@ -4,10 +4,79 @@ import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
 import { FaTrash } from 'react-icons/fa'
 import { useCartContext } from '../context/cart_context'
-const CartItem = () => {
-  return <h4>cart item</h4>
+
+const CartItem = ({ id, image, name, color, price, amount }) => {
+
+  const { toggleAmount, removeItem } = useCartContext()
+  const subTotal = price * amount;
+
+  const increase = () => {
+    toggleAmount(id, 'inc')
+  }
+
+  const decrease = () => {
+    toggleAmount(id, 'dec')
+  }
+
+  return <Wrapper>
+    <div className="title">
+      <img src={image} alt="Product Image" />
+      <div className="info">
+        <h5>{name}</h5>
+        <p >
+          Color: <span className="color" style={{ backgroundColor: color }}></span>
+        </p>
+      </div>
+    </div>
+    <p className="price">{formatPrice(price)}</p>
+    <p> <AmountButtons amount={amount} increase={increase} decrease={decrease} /></p>
+    <p>{formatPrice(subTotal)}</p>
+    <p className="remove-btn" onClick={() => removeItem(id)}><FaTrash /></p>
+  </Wrapper>
 }
 
+const Wrapper = styled.article`
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1fr auto;
+grid-template-rows: 75px;
+margin-bottom:3rem;
+column-gap:1rem;
+justify-items:center;
+
+.title{
+  display:grid;
+  grid-template-columns:100px 200px;
+  align-items:center;
+  text-align:left;
+  column-gap:1rem;
+  
+  img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    border-radius:5px;
+  }
+  .color{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    margin-left:5px;
+    
+  }
+}
+.price{
+  color: var(--clr-primary-5);
+}
+.remove-btn{
+  color:rgb(240, 95, 95);
+  cursor:pointer;
+}
+
+`
+
+/*
 const Wrapper = styled.article`
   .subtotal {
     display: none;
@@ -143,5 +212,5 @@ const Wrapper = styled.article`
     }
   }
 `
-
+*/
 export default CartItem

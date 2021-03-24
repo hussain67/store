@@ -34,17 +34,19 @@ export const CartProvider = ({ children }) => {
   }
   //Remove item
   const removeItem = (id) => {
-
+    dispatch({ type: REMOVE_CART_ITEM, value: id })
   }
   //Toggle amount
   const toggleAmount = (id, value) => {
-
+    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, value: { id, value } })
   }
+
   //Clear cart
   const clearCart = () => {
-
+    dispatch({ type: CLEAR_CART })
   }
   useEffect(() => {
+    dispatch({ type: COUNT_CART_TOTALS })
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }, [state.cart])
 

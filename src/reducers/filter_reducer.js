@@ -18,7 +18,7 @@ const filter_reducer = (state, action) => {
       return p.price
     })
     maxPrice = Math.max(...maxPrice)
-    console.log(maxPrice)
+    //console.log(maxPrice)
     return {
       ...state, all_products: [...action.value], filtered_products: [...action.value],
       filters: { ...state.filters, max_price: maxPrice, price: maxPrice }

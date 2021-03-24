@@ -9,6 +9,7 @@ import PageHero from './PageHero'
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext()
+
   return (<Wrapper className="section section-center">
     <CartColumns />
 
@@ -18,10 +19,10 @@ const CartContent = () => {
     <hr />
     <div className="link-container">
       <Link to="/products" className="link-btn">continue shopping</Link>
-      <button className="link-btn clear-btn" type="button" onClick={clearCart}>clear shopping cart</button>
+      <button className="link-btn clear-btn" type="button" onClick={() => clearCart()}>clear shopping cart</button>
     </div>
-    <CartTotals />
 
+    <CartTotals />
   </Wrapper>
   )
 }
