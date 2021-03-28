@@ -6,12 +6,28 @@ import { useCartContext } from '../context/cart_context'
 import { Link } from 'react-router-dom'
 
 const CheckoutPage = () => {
+  const { cart } = useCartContext()
   return <main>
     <PageHero title='checkout' />
-    <div className="page">
-      <h1>Checkout</h1>
-    </div>
+    <Wrapper className="section">
+      <div className="page">
+        {cart.length < 1 ? <div className="empty">
+          <h1>Your cart is empty</h1>
+          <Link to="/products" className="btn">Fill The Cart</Link>
+        </div> : <StripeCheckout />}
+      </div>
+    </Wrapper>
   </main>
 }
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+display:grid;
+place-items:center;
+.empty{
+  text-align:center;
+  .btn{
+    margin-top:2rem;
+  }
+ 
+}
+`
 export default CheckoutPage
